@@ -50,9 +50,11 @@ function Main({ navigation }) {
     const { latitude, longitude } = currentRegion;
 
     const response = await api.get('/search', {
-      latitude,
-      longitude,
-      techs
+      params: {
+        latitude,
+        longitude,
+        techs
+      }
     });
 
     setDevs(response.data.devs);
@@ -77,8 +79,8 @@ function Main({ navigation }) {
           <Marker
             key={dev._id}
             coordinate={{
-              latitude: dev.location.coordenates[1],
-              longitude: dev.location.coordenates[0]
+              latitude: dev.location.coordinates[1],
+              longitude: dev.location.coordinates[0]
             }}
           >
             <Image
